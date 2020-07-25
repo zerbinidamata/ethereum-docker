@@ -18,11 +18,12 @@ TestRPC - [https://github.com/ethereumjs/testrpc](https://github.com/ethereumjs/
 
 #### Prerequisites
 
-Docker Toolbox installed. 
-> To download and install Docker Toolbox for your environment please
-follow [the Docker Toolbox instructions](https://www.docker.com/products/docker-toolbox). 
+Docker Toolbox installed.
 
-After Docker Toolbox has been installed, create a ```default``` machine to run Docker against.
+> To download and install Docker Toolbox for your environment please
+> follow [the Docker Toolbox instructions](https://www.docker.com/products/docker-toolbox).
+
+After Docker Toolbox has been installed, create a `default` machine to run Docker against.
 
 #### Lets go
 
@@ -38,7 +39,7 @@ If using docker-machine you should be able to get to the JSON RPC client by doin
 open http://$(docker-machine ip default):8545
 ```
 
-Assuming you ran docker-compose against the ```default``` machine.
+Assuming you ran docker-compose against the `default` machine.
 
 ### 1.2. Ethereum Cluster with netstats monitoring
 
@@ -50,9 +51,9 @@ $ docker-compose up -d
 
 By default this will create:
 
-* 1 Ethereum Bootstrapped container
-* 1 Ethereum container (which connects to the bootstrapped container on launch)
-* 1 Netstats container (with a Web UI to view activity in the cluster)
+- 1 Ethereum Bootstrapped container
+- 1 Ethereum container (which connects to the bootstrapped container on launch)
+- 1 Netstats container (with a Web UI to view activity in the cluster)
 
 To access the Netstats Web UI:
 
@@ -83,17 +84,21 @@ See `files/genesis.json`.
 ## 2. Interact with geth
 
 To get attached to the `geth` JavaScript console on the node you can run the following
+
 ```
-docker exec -it ethereumdocker_eth_1 geth attach ipc://root/.ethereum/devchain/geth.ipc
+docker exec -it ethereum-docker_eth_1 geth --allow-insecure-unlock attach ipc://root/.ethereum/devchain/geth.ipc
 ```
-Then you can `miner.start()`, and then check to see if it's mining by inspecting `web3.eth.mining`. 
+
+Then you can `miner.start()`, and then check to see if it's mining by inspecting `web3.eth.mining`.
 
 See the [Javascript Runtime](https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console) docs for more.
 
 ### 2.1 Use an existing DAG
 
 To speed up the process, you can use a [pre-generated DAG](https://github.com/ethereum/wiki/wiki/Ethash-DAG). All you need to do is add something like this
+
 ```
 ADD dag/full-R23-0000000000000000 /root/.ethash/full-R23-0000000000000000
 ```
+
 to the `monitored-geth-client` Dockerfile.
