@@ -87,6 +87,10 @@ To get attached to the `geth` JavaScript console on the node you can run the fol
 
 ```
 docker exec -it ethereum-docker_eth_1 geth --allow-insecure-unlock attach ipc://root/.ethereum/devchain/geth.ipc
+personal.unlockAccount(eth.accounts[0], "")
+eth.defaultAccount = eth.accounts[0]
+miner.setEtherbase(eth.accounts[0])
+miner.start()
 ```
 
 Then you can `miner.start()`, and then check to see if it's mining by inspecting `web3.eth.mining`.
